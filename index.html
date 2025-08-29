@@ -1,0 +1,685 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>이니스프리 타겟마케팅 발송 메세지</title>
+
+<!-- Swiper.js -->
+<link rel="preload" as="style" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
+
+<style>
+/* =========================
+   Design Tokens (Light)
+   ========================= */
+:root {
+  --bg: #ffffff;
+  --surface: #ffffff;
+  --msg-surface: #ffffff;
+  --stroke: #eaeef3;
+  --muted: #8d96a0;
+  --text-primary: #101113;
+  --text-secondary: #5f6670;
+  --brand: #0ea5e9;     /* sky-500 */
+  --brand-2: #22c55e;   /* green-500 */
+  --brand-3: #f59e0b;   /* amber-500 */
+  --shadow-sm: 0 1px 3px rgba(16,17,19,.06), 0 1px 2px rgba(16,17,19,.04);
+  --shadow-md: 0 6px 18px rgba(16,17,19,.10);
+}
+
+/* =========================
+   Design Tokens (Dark)
+   ========================= */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0b0d10;
+    --surface: #0f1216;
+    --msg-surface: #0f1216;
+    --stroke: #1a1f26;
+    --muted: #9aa3ad;
+    --text-primary: #eef2f6;
+    --text-secondary: #c8d0d8;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,.5), 0 1px 2px rgba(0,0,0,.35);
+    --shadow-md: 0 10px 28px rgba(0,0,0,.55);
+  }
+}
+
+html,body{
+  background: var(--bg);
+  margin:0;
+  font-family: system-ui,-apple-system,Segoe UI,Roboto,Apple SD Gothic Neo,Noto Sans KR,Helvetica,Arial,sans-serif;
+  color: var(--text-primary);
+  line-height:1.45;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* =========================
+   Page Hero (Top Title)
+   ========================= */
+.page-hero {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 28px 16px 20px;
+  background: radial-gradient(1200px 300px at 50% -120px, rgba(14,165,233,.25), transparent 60%),
+              radial-gradient(900px 240px at 10% -100px, rgba(34,197,94,.22), transparent 60%),
+              linear-gradient(180deg, rgba(255,255,255,.65), rgba(255,255,255,0));
+}
+@media (prefers-color-scheme: dark) {
+  .page-hero {
+    background: radial-gradient(1200px 300px at 50% -120px, rgba(14,165,233,.25), transparent 60%),
+                radial-gradient(900px 240px at 10% -100px, rgba(34,197,94,.20), transparent 60%),
+                linear-gradient(180deg, rgba(15,18,22,.65), rgba(15,18,22,0));
+  }
+}
+.hero-card {
+  max-width: 1100px;
+  margin: 0 auto;
+  background: rgba(255,255,255,.75);
+  border: 1px solid var(--stroke);
+  backdrop-filter: blur(8px) saturate(130%);
+  -webkit-backdrop-filter: blur(8px) saturate(130%);
+  border-radius: 16px;
+  box-shadow: var(--shadow-sm);
+  padding: 18px 18px;
+}
+@media (prefers-color-scheme: dark) {
+  .hero-card {
+    background: rgba(15,18,22,.65);
+  }
+}
+.hero-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+.hero-logo {
+  width: 36px; height: 36px; border-radius: 9px;
+  display: grid; place-items: center;
+  background: linear-gradient(135deg, var(--brand), var(--brand-2));
+  color: #fff;
+  box-shadow: var(--shadow-sm);
+}
+.hero-title {
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+  text-align: center;
+}
+.hero-sub {
+  width: 100%;
+  text-align: center;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+}
+.hero-badges {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 8px;
+  flex-wrap: wrap;
+}
+.badge {
+  font-size: 12px;
+  color: var(--text-primary);
+  border: 1px solid var(--stroke);
+  background: var(--surface);
+  padding: 6px 10px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: var(--shadow-sm);
+}
+.badge .dot {
+  width: 8px; height: 8px; border-radius: 50%;
+}
+.dot.brand   { background: var(--brand); }
+.dot.brand2  { background: var(--brand-2); }
+.dot.brand3  { background: var(--brand-3); }
+
+/* =========================
+   Layout
+   ========================= */
+.wrapper{
+  display:flex; gap:40px; justify-content:center; align-items:flex-start; flex-wrap:wrap;
+  padding:16px 16px 20px;
+}
+.phone-col{
+  display:flex; flex-direction:column; align-items:center; gap:10px; margin-block:12px;
+}
+.phone-label{
+  font-size:14px; font-weight:800; color:var(--text-primary);
+  background: var(--surface);
+  border: 1px solid var(--stroke);
+  border-radius:8px; padding:4px 10px;
+  box-shadow: var(--shadow-sm);
+}
+
+/* =========================
+   Phone Frame
+   ========================= */
+.phone{
+  --bezel:2px; --radius:22px; --notchH:13px; --notchW:106px;
+  width:360px; height:840px;
+  border:var(--bezel) solid #111;
+  border-radius: calc(var(--radius) + var(--bezel));
+  background:#000; position:relative;
+  box-shadow: var(--shadow-md);
+  font-size:13px; letter-spacing:-0.12px;
+  overflow:hidden;
+}
+.phone::before{
+  content:''; position:absolute; left:50%; top:calc(-1 * var(--bezel)); transform:translateX(-50%);
+  width:var(--notchW); height:var(--notchH); background:#111;
+  border-bottom-left-radius:10px; border-bottom-right-radius:10px; z-index:100;
+}
+.screen{
+  position:absolute; inset:var(--bezel);
+  border-radius: calc(var(--radius) + 5px);
+  overflow:hidden; background:var(--bg);
+  display:flex; flex-direction:column;
+}
+
+/* =========================
+   Common Bars
+   ========================= */
+.statusbar{
+  height:18px; padding:6px 14px 4px;
+  display:flex; align-items:center; justify-content:space-between;
+  background:var(--bg); font-size:12px; z-index:10;
+  flex-wrap: nowrap; /* prevent wrap */
+}
+.statusbar .sb-right{
+  display:inline-flex; align-items:center; gap:6px; white-space:nowrap; flex:0 0 auto;
+}
+.sb-icon{ width:18px; height:18px; }
+
+.appbar{
+  min-height:52px; height:auto;
+  display:flex; align-items:center; justify-content:space-between; gap:8px;
+  padding:10px; background:#fff; border-bottom:none;
+  font-size:13px; font-weight:700; letter-spacing:-0.1px; z-index:10;
+}
+@media (prefers-color-scheme: dark) { .appbar{ background:#0f1216; } }
+.appbar .left,.appbar .right{ display:flex; align-items:center; gap:10px; }
+.icon{ width:18px; height:18px; color:var(--text-secondary); }
+
+.body-area{ flex:1; display:flex; flex-direction:column; background:var(--msg-surface); position:relative; }
+.chat-wrap{ flex:1; padding:10px; overflow-y:auto; display:flex; flex-direction:column; gap:10px; }
+
+/* =========================
+   RCS (Android-like)
+   ========================= */
+.rcs .appbar{ background-color:var(--bg); }
+.rcs .title-inline{ display:flex; align-items:center; gap:6px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis; }
+.rcs .title-inline img{ height:30px; }
+.rcs .title-inline .name{ font-weight:700; font-size:16px; }
+.rcs .ad-meta{ font-size:10px; color:var(--muted); text-align:center; margin:0 0 2px; }
+.rcs .unsub-meta{ font-size:11px; color:var(--muted); display:flex; justify-content:space-between; padding:6px 0; margin-top:6px; }
+
+/* RCS Slides: keep image; slim text/buttons only */
+.rcs-swiper{ width:100%; height:auto; overflow:visible; background:transparent; }
+.rcs-swiper .swiper-wrapper{ align-items:stretch; }
+.rcs-swiper .swiper-slide{
+  width:calc(100% - 36px);
+  display:flex; align-items:stretch; justify-content:center;
+  background:transparent; padding-bottom:28px; /* 40 → 28 */
+}
+.rcs-card{
+  width:100%; background:var(--surface); border:1px solid var(--stroke);
+  border-radius:12px; display:flex; flex-direction:column; overflow:hidden;
+  box-shadow: var(--shadow-sm);
+  margin-left:10px; box-sizing:border-box;
+}
+.rcs-hero{
+  background:#fff; display:flex; align-items:center; justify-content:center;
+}
+@media (prefers-color-scheme: dark) { .rcs-hero{ background:#0f1216; } }
+.rcs-hero img{
+  width:100%; height:auto; object-fit:cover;
+}
+.rcs-content{ padding:8px 10px; display:flex; flex-direction:column; flex:1; }
+.rcs-title{ font-size:16px; font-weight:800; color:var(--text-primary); margin:0 0 2px; letter-spacing:-0.2px; }
+.rcs-desc{ font-size:14px; color:var(--text-primary); margin:0; white-space:pre-line; letter-spacing:-0.12px; line-height:1.35; flex:1; }
+.rcs-cta{ display:flex; flex-direction:column; gap:6px; padding:0 10px 8px; margin-top:8px; box-sizing:border-box; }
+.cta-btn{
+  width:100%; text-align:center; text-decoration:none; background:#eef1f5; border:1px solid var(--stroke); color:var(--text-primary);
+  border-radius:9px; padding:10px 8px; font-size:14px; font-weight:700; letter-spacing:-0.1px; box-sizing:border-box;
+}
+@media (prefers-color-scheme: dark) {
+  .cta-btn{ background:#12161c; }
+}
+
+/* RCS composer */
+.rcs .composer{ padding:8px 10px; display:flex; align-items:center; gap:8px; background:var(--bg); border-top:none; position:sticky; bottom:0; z-index:10; }
+.rcs .input-pill{ flex:1; height:40px; background:var(--surface); border:1px solid #dcdfe3; border-radius:20px; display:flex; align-items:center; padding:0 16px; color:var(--text-primary); font-size:14px; }
+@media (prefers-color-scheme: dark) { .rcs .input-pill{ border-color:#222933; } }
+.rcs .placeholder{ color:#9ca3af; }
+.rcs .tool{ width:40px; height:40px; border-radius:50%; background:var(--surface); display:flex; align-items:center; justify-content:center; color:#8b939b; border: 1px solid var(--stroke); }
+.rcs .tool svg{ width:20px; height:20px; }
+
+/* Android nav */
+.android-nav{ height:28px; display:flex; align-items:center; justify-content:center; gap:28px; background:var(--bg); border-top:none; }
+.android-nav svg{ width:16px; height:16px; color:#6b7280; }
+
+/* Swiper dots */
+.swiper-pagination-bullet{ background:rgba(0,0,0,.28); }
+.swiper-pagination-bullet-active{ background:#111; }
+@media (prefers-color-scheme: dark) {
+  .swiper-pagination-bullet{ background:rgba(255,255,255,.28); }
+  .swiper-pagination-bullet-active{ background:#fff; }
+}
+
+/* =========================
+   iOS (MMS)
+   ========================= */
+.ios .top-bar{ background:var(--surface); }
+.ios .statusbar{ justify-content:space-between; padding:6px 14px 4px; background:transparent; }
+
+.ios .appbar{
+  background:transparent; border-bottom:none; padding:0 16px; height:auto;
+  flex-direction:column; justify-content:center; align-items:center;
+}
+.ios .contact{ display:flex; flex-direction:column; align-items:center; gap:8px; color:var(--text-primary); font-size:16px; text-align:center; }
+.ios .contact .avatar{ background:#e5e7eb; border-radius:50%; width:72px; height:72px; margin-bottom:4px; display:flex; align-items:center; justify-content:center; }
+@media (prefers-color-scheme: dark) { .ios .contact .avatar{ background:#212832; } }
+.ios .contact .avatar svg{ color:#fff; width:40px; height:40px; }
+.ios .contact .contact-details{ display:flex; align-items:center; gap:4px; padding-top:8px; }
+.ios .contact .contact-number{ font-size:12.8px; white-space:nowrap; }
+
+.ios .body-area{ flex:1; display:flex; flex-direction:column; background:var(--msg-surface); position:relative; }
+.ios .chat-scroll-area{ flex:1; overflow-y:auto; -webkit-overflow-scrolling:touch; padding:16px 10px; display:flex; flex-direction:column; gap:10px; }
+.ios .meta{ color:#6b7280; font-size:10.8px; text-align:center; margin:0 0 4px; }
+.ios .bubble{
+  max-width:70%; margin-left:0; margin-right:auto; background:#eef0f4; border:none; border-radius:18px 18px 18px 6px; padding:10px 12px; color:var(--text-primary); font-size:12px; line-height:1.5; white-space:pre-line;
+}
+@media (prefers-color-scheme: dark) { .ios .bubble{ background:#161b23; } }
+.ios .bubble a{ color:#0ea5e9; text-decoration:underline; word-break:break-all; }
+.ios .chat-image{ width:77%; height:auto; border-radius:12px; margin-bottom:0; align-self:flex-start; margin-left:0; }
+
+/* iOS composer (realistic) */
+.ios .composer-container{
+  padding:6px 12px 8px; background:rgba(255,255,255,.92);
+  backdrop-filter:saturate(160%) blur(8px); -webkit-backdrop-filter:saturate(160%) blur(8px);
+  position:sticky; bottom:0; z-index:10; border-top:1px solid var(--stroke);
+}
+@media (prefers-color-scheme: dark) {
+  .ios .composer-container{ background:rgba(15,18,22,.85); }
+}
+.ios .composer{ display:flex; align-items:center; gap:0; background:transparent; border:none; padding:0; margin-bottom:4px; height:40px; }
+
+/* left circular plus */
+.ios .circ-btn{
+  width:34px; height:34px; border-radius:50%; background:var(--surface); border:1px solid var(--stroke);
+  display:inline-flex; align-items:center; justify-content:center; margin-right:8px; box-shadow: var(--shadow-sm); cursor:pointer; color:#6b7280;
+}
+.ios .circ-btn svg{ width:18px; height:18px; }
+
+/* input with mic inside */
+.ios .input-pill{
+  flex:1; height:36px; background:var(--surface); border-radius:18px;
+  display:flex; align-items:center; justify-content:space-between; padding:0 8px 0 12px;
+  box-shadow:inset 0 0 0 1px var(--stroke); border:none;
+}
+.ios .placeholder{ color:#9ba3ae; font-size:14px; line-height:1; white-space:nowrap; }
+.ios .mic-in-input{ width:28px; height:28px; border-radius:50%; display:inline-flex; align-items:center; justify-content:center; color:#6b7280; }
+.ios .mic-in-input svg{ width:18px; height:18px; }
+.ios .composer > .mic{ display:none !important; }
+
+.home-indicator{ display:none; }
+
+/* =========================
+   Footer
+   ========================= */
+footer{
+  width:100%; text-align:center; padding:12px; color:var(--muted); font-size:12px; margin-top:6px; border-top:1px solid var(--stroke);
+}
+
+/* =========================
+   Responsive Tweaks
+   ========================= */
+@media (max-width: 380px){
+  .wrapper{ gap:24px; padding:12px 12px 16px; }
+  .rcs-content{ padding:7px 9px; }
+  .rcs-cta{ gap:5px; padding:0 9px 7px; }
+  .cta-btn{ padding:9px 8px; }
+  .ios .composer-container{ padding:6px 10px 8px; }
+  .ios .input-pill{ height:34px; }
+}
+
+/* Reduce motion: pause autoplay dots flash, etc. */
+@media (prefers-reduced-motion: reduce){
+  .swiper, .swiper * { animation: none !important; transition: none !important; }
+}
+</style>
+</head>
+<body>
+
+<!-- =========================
+     SVG Sprite (icons)
+     ========================= -->
+<svg xmlns="http://www.w3.org/2000/svg" style="position:absolute; width:0; height:0; overflow:hidden">
+  <symbol id="i-plus" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></g></symbol>
+  <symbol id="i-mic" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a4 4 0 0 0-4 4v7a4 4 0 0 0 8 0V6a4 4 0 0 0-4-4z"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="8" y1="18" x2="16" y2="18"/></g></symbol>
+  <symbol id="i-back" viewBox="0 0 24 24"><path d="M15 6l-6 6 6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-down" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-more" viewBox="0 0 24 24"><circle cx="12" cy="5" r="1.6"/><circle cx="12" cy="12" r="1.6"/><circle cx="12" cy="19" r="1.6"/></symbol>
+  <symbol id="i-signal" viewBox="0 0 24 24"><rect x="3" y="10" width="3" height="8" rx="1"/><rect x="8" y="8" width="3" height="10" rx="1"/><rect x="13" y="6" width="3" height="12" rx="1"/><rect x="18" y="4" width="3" height="14" rx="1"/></symbol>
+  <symbol id="i-wifi" viewBox="0 0 24 24"><g fill="none" stroke="currentColor" stroke-width="2"><path d="M2 8a20 20 0 0 1 20 0"/><path d="M5 12a14 14 0 0 1 14 0"/><path d="M8.5 15.5a8 8 0 0 1 7 0"/></g><circle cx="12" cy="18" r="1.6" fill="currentColor"/></symbol>
+  <symbol id="i-battery" viewBox="0 0 28 14"><rect x="1" y="2" width="22" height="10" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><rect x="3" y="4" width="18" height="6" rx="1" fill="currentColor"/><rect x="24" y="5" width="3" height="4" rx="1" fill="currentColor"/></symbol>
+  <symbol id="i-next" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-circle" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5" stroke="currentColor" fill="none"/></symbol>
+</svg>
+
+<!-- =========================
+     Page Hero
+     ========================= -->
+<header class="page-hero" role="banner" aria-label="이니스프리 타겟마케팅 발송 메시지 헤더">
+  <div class="hero-card" role="group" aria-label="제목 및 요약">
+    <div class="hero-row">
+      <div class="hero-logo" aria-hidden="true">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+          <path d="M3 12h18M12 3v18" stroke-width="2"/>
+        </svg>
+      </div>
+      <div class="hero-title">이니스프리 타겟마케팅 발송 메세지</div>
+      <div></div>
+    </div>
+    <div class="hero-sub">RCS 슬라이드 & MMS 미리보기</div>
+  </div>
+</header>
+
+<!-- =========================
+     Content
+     ========================= -->
+<main class="wrapper" role="main">
+  <!-- RCS -->
+  <section class="phone-col" aria-label="RCS 슬라이드 미리보기">
+    <div class="phone-label">RCS 슬라이드</div>
+    <div class="phone rcs" role="region" aria-label="안드로이드 메시지 화면">
+      <div class="screen">
+        <div class="statusbar" aria-label="상태바">
+          <div aria-hidden="true">오전 11:00</div>
+          <div class="sb-right" aria-hidden="true">
+            <svg class="sb-icon"><use href="#i-signal"/></svg>
+            <svg class="sb-icon"><use href="#i-wifi"/></svg>
+            <svg class="sb-icon"><use href="#i-battery"/></svg>
+          </div>
+        </div>
+
+        <div class="appbar" style="padding-bottom:10px;" role="navigation" aria-label="상단 내비게이션">
+          <div class="left">
+            <svg class="icon" aria-hidden="true"><use href="#i-back"/></svg>
+            <span class="title-inline">
+              <img
+                src="t_logo.jpg"
+                alt="SK텔레콤 T 로고"
+                loading="lazy" decoding="async">
+              <span class="name">SK텔레콤 고객혜택 안내</span>
+              <svg class="icon" aria-hidden="true"><use href="#i-down"/></svg>
+            </span>
+          </div>
+          <div class="right">
+            <svg class="icon" aria-hidden="true"><use href="#i-more"/></svg>
+          </div>
+        </div>
+
+        <div class="body-area">
+          <div class="chat-wrap" aria-live="polite">
+            <div class="ad-meta">[Web발신] (광고)</div>
+
+            <div class="swiper rcs-swiper" aria-label="프로모션 슬라이드" role="group">
+              <div class="swiper-wrapper" id="rcsWrapper"></div>
+              <div class="swiper-pagination" aria-hidden="true"></div>
+            </div>
+
+            <div class="unsub-meta" aria-label="발신정보"><span>오전 11:00</span><span>무료수신거부 1504</span></div>
+          </div>
+
+          <div class="composer" role="form" aria-label="메시지 입력">
+            <div class="tool" aria-label="콘텐츠 추가">
+              <svg aria-hidden="true"><use href="#i-plus"/></svg>
+            </div>
+            <div class="input-pill"><span class="placeholder">메시지 입력</span></div>
+            <div class="tool emoji" title="이모지" aria-label="이모지">
+              <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                <circle cx="12" cy="12" r="10"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/>
+              </svg>
+            </div>
+          </div>
+
+          <nav class="android-nav" aria-label="시스템 내비게이션">
+            <svg aria-hidden="true"><use href="#i-back"/></svg>
+            <svg aria-hidden="true"><use href="#i-circle"/></svg>
+            <svg aria-hidden="true"><use href="#i-next"/></svg>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MMS(iOS) -->
+  <section class="phone-col" aria-label="MMS(iOS) 미리보기">
+    <div class="phone-label">MMS(아이폰)</div>
+    <div class="phone ios" role="region" aria-label="iOS 메시지 화면">
+      <div class="screen">
+        <!-- 상단부 -->
+        <div class="top-bar">
+          <div class="statusbar" aria-label="상태바">
+            <div aria-hidden="true">SKT 오전 11:00</div>
+            <div class="sb-right" aria-hidden="true">
+              <svg class="sb-icon"><use href="#i-signal"/></svg>
+              <svg class="sb-icon"><use href="#i-wifi"/></svg>
+              <svg class="sb-icon"><use href="#i-battery"/></svg>
+            </div>
+          </div>
+
+          <div class="appbar" role="navigation" aria-label="상단 내비게이션">
+            <div class="left" aria-hidden="true"></div>
+            <div class="contact">
+              <span class="avatar" aria-hidden="true">
+                <svg viewBox="0 0 24 24" fill="currentColor" stroke="none" width="40" height="40">
+                  <path d="M12 2a4 4 0 0 1 4 4v2a4 4 0 0 1-4 4 4 4 0 0 1-4-4V6a4 4 0 0 1 4-4zM2 20v-2a6 6 0 0 1 6-6h8a6 6 0 0 1 6 6v2H2z"/>
+                </svg>
+              </span>
+              <div class="contact-details" aria-label="수신번호">
+                <span class="contact-number">+82 1566-0110</span>
+                <svg class="icon" aria-hidden="true"><use href="#i-next"/></svg>
+              </div>
+            </div>
+            <div class="right" style="color:#9ca3af;" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <!-- 본문 -->
+        <div class="chat-scroll-area" aria-live="polite">
+          <div class="meta">8월 11일 (월) 오전 11:00</div>
+          <img
+            src="rcs_02.jpg"
+            alt="이니스프리 프로모션 MMS 이미지"
+            class="chat-image"
+            loading="lazy" decoding="async">
+          <div class="bubble">
+            [Web발신]
+(광고)[SKT] 이니스프리 썸머 빅세일 혜택 안내
+
+고객님, 안녕하세요.
+이니스프리에서 썸머 빅세일 혜택을 안내드립니다.
+
+각 이벤트별 자세한 내용은 링크를 통해 확인해 주세요.
+
+■ 이니스프리 공식몰 첫 구매라면 단 한번!
+- 최대 25% 추가 할인 쿠폰
+- 무조건 무료 배송
+- 인기템 최대 95% 할인
+- 첫 구매 인기템 50%특가
+- 스킨만 사도 본품 로션 증정!
+- 최대 8만원 쿠폰팩까지
+
+▶ 이벤트 참여하기 : <a href="https://link.innisfree.com/v46uc7">https://link.innisfree.com/v46uc7</a>
+
+■ 안써보셨다면 지금이 기회!
+베스트셀러 0원에 선착순 체험 
+- 놓치면 손해! BEST 4종을 0원에 체험해 보세요!
+
+▶ 0원에 체험하기 : <a href="https://link.innisfree.com/bi4963">https://link.innisfree.com/bi4963</a>
+
+■ 이니스프리 썸머 빅세일 혜택 라인업
+[쿠폰] 최대 1만원 추가할인 쿠폰
+[결제혜택] 네이버페이 5천원 결제 혜택
+[특가] 여름철 쟁임템 선케어, 클렌징폼, 마스크팩, 수딩젤 ~50% 
+[반값템] 레티놀 앰플, 비타민C&레티놀 패드 반값
+[하루특가] 매일 바뀌는 초특가템 GET!
+[추가증정]5만원 이상 결제 시 여행용 파우치 증정
+
+▶ 썸머 빅세일 특가 확인 : <a href="https://link.innisfree.com/0vsn1j">https://link.innisfree.com/0vsn1j</a>
+
+■ 문의 : 이니스프리 고객센터 (080-380-0114)
+
+※ 이 메시지는 SK텔레콤에서 혜택/광고 수신에 동의하신 고객님께 보내드렸습니다.
+
+감사합니다.
+
+무료 수신거부 1504
+          </div>
+        </div>
+
+        <!-- 하단 입력창 (iOS realistic) -->
+        <div class="composer-container">
+          <div class="composer" role="form" aria-label="메시지 입력">
+            <button class="circ-btn" aria-label="첨부 추가">
+              <svg aria-hidden="true"><use href="#i-plus"/></svg>
+            </button>
+            <div class="input-pill" aria-label="입력 필드">
+              <span class="placeholder">문자메시지 · SMS</span>
+              <span class="mic-in-input" aria-label="음성 입력">
+                <svg aria-hidden="true"><use href="#i-mic"/></svg>
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer role="contentinfo">
+  <p>Copyright © 2025 SKTelecom. All rights reserved.</p>
+</footer>
+
+<script>
+/* =========================
+   Slides (with a11y-friendly alts)
+   ========================= */
+const slides = [
+  {
+    image: "rcs_01.jpg",
+    alt: "이니스프리 0원 체험 프로모션 배너",
+    title: "(광고)[SKT] 베스트셀러 0원에 선착순 체험!",
+    desc: `아직 안 써보셨나요? 지금이 기회!
+
+회원가입만 해도 BEST 제품 0원 체험 찬스!
+
+누구나 받을 수 있는 썸머 빅세일 혜택, 지금 바로 확인하세요!`,
+    ctas: [
+      { href: "https://m.innisfree.com/kr/ko/ca/event/101058?utm_id=RF11eZd", label: "▶ 0원에 체험하기" },
+      { href: "https://m.innisfree.com/api?processType=join&utm_id=RF119g4", label: "▶ 바로 가입하기" }
+    ]
+  },
+  {
+    image: "rcs_02.jpg",
+    alt: "이니스프리 첫구매 최대 95% 할인 배너",
+    title: "(광고)[SKT] 이니스프리 첫구매 최대 95% 할인",
+    desc: `[이니스프리 첫구매 BIG 세일 혜택 안내]
+
+고객님, 안녕하세요.
+지금 이니스프리 공식몰 첫 방문 시, 받을 수 있는 혜택을 소개할게요!
+
+- 최대 25% 추가 할인 쿠폰
+- 무조건 무료배송
+- 인기템 95% 할인!
+- 최대 8만원 쿠폰팩까지!`,
+    ctas: [
+      { href: "https://m.innisfree.com/kr/ko/ca/event/100001?utm_id=RF119i6", label: "▶ 첫 구매 혜택보기" },
+      { href: "https://m.innisfree.com/api?processType=join&utm_id=RF119g4", label: "▶ 바로 가입하기" }
+    ]
+  },
+  {
+    image: "rcs_03.jpg",
+    alt: "이니스프리 썸머 빅세일 특가 라인업 배너",
+    title: "(광고)[SKT] 이니스프리 썸머 빅세일 특가 라인업",
+    desc: `[특가] 여름철 쟁임템 특가! 선케어, 클렌징폼, 마스크팩 등 ~50% 
+[반값혜택] 레티놀 앰플, 패드 반값특가 
+[보이는 가격에서 추가 혜택] Npay 5천원 결제 혜택 
+[첫구매] 스킨 사면 로션 본품 증정!
+
+■ 이니스프리 고객센터 (080-380-0114)`,
+    ctas: [
+      { href: "https://m.innisfree.com/kr/ko/ca/event/101059?utm_id=RF11v10", label: "▶ 빅세일 특가 확인" },
+      { href: "https://m.innisfree.com/kr/ko/ca/event/100957?utm_id=RF119e6", label: "▶ 빅세일 혜택 한눈에 보기" }
+    ]
+  }
+];
+
+/* =========================
+   Render slides (performance hints)
+   ========================= */
+const wrapper = document.getElementById("rcsWrapper");
+slides.forEach(s => {
+  const slide = document.createElement("div");
+  slide.className = "swiper-slide";
+  slide.innerHTML = `
+    <article class="rcs-card" role="article" aria-label="${s.title.replace(/"/g,'&quot;')}">
+      <div class="rcs-hero">
+        <img
+          src="${s.image}"
+          alt="${s.alt.replace(/"/g,'&quot;')}"
+          loading="lazy" decoding="async">
+      </div>
+      <div class="rcs-content">
+        <h3 class="rcs-title">${s.title}</h3>
+        <div class="rcs-desc">${s.desc}</div>
+      </div>
+      <div class="rcs-cta">
+        ${s.ctas.map(c => `<a class="cta-btn" href="${c.href}" aria-label="${c.label}">${c.label}</a>`).join("")}
+      </div>
+    </article>`;
+  wrapper.appendChild(slide);
+});
+
+/* =========================
+   Swiper: reduce-motion aware
+   ========================= */
+function initSwiper(){
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const config = {
+    slidesPerView: "auto",
+    spaceBetween: 10,
+    loop: false,
+    centeredSlides: false,
+    grabCursor: true,
+    pagination: { el: ".swiper-pagination", clickable: true },
+    keyboard: { enabled: true, onlyInViewport: true },
+    a11y: { enabled: true }
+  };
+  if (!prefersReduced) {
+    config.autoplay = { delay: 3300, disableOnInteraction: false, stopOnLastSlide: true };
+  }
+  new Swiper(".rcs-swiper", config);
+}
+if (document.readyState === "complete" || document.readyState === "interactive") {
+  initSwiper();
+} else {
+  document.addEventListener("DOMContentLoaded", initSwiper, { once: true });
+}
+</script>
+</body>
+</html>
